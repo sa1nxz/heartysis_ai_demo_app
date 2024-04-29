@@ -5,7 +5,7 @@ import joblib
 
 with open("models/ensemble_model.joblib", 'rb') as file:
     loaded_model = joblib.load(file)
-
+    
 def preprocess_input(age, sex, chest_pain_type, resting_bp, cholesterol, fasting_bs, resting_ecg, max_hr, exercise_angina, oldpeak, st_slope):
     def transform_Sex(sex):
         return 1 if sex == 'М' else 0
@@ -82,10 +82,11 @@ with st.container():
     st_slope = st.selectbox("ST Slope", ["Вверх", "Плоский", "Вниз"])
 
 if st.button("Анализ"):
-    preprocessed_input = preprocess_input(age, sex, chest_pain_type, resting_bp, cholesterol, fasting_bs, resting_ecg, max_hr, exercise_angina, oldpeak, st_slope)
-    heart_disease_probability = predict_heart_disease_probability(preprocessed_input)
-    st.write("Вероятность сердечных заболеваний:", round(heart_disease_probability[0], 4))
-    if heart_disease_probability[0] > 0.5:
-        st.warning(":broken_heart: У пациента, скорее всего, есть заболевание сердца.")
-    else:
-        st.success(":green_heart: Маловероятно, что у пациента есть сердечные заболевания.")
+    with st.spinner("Анализируем.."):
+        preprocessed_input = preprocess_input(age, sex, chest_pain_type, resting_bp, cholesterol, fasting_bs, resting_ecg, max_hr, exercise_angina, oldpeak, st_slope)
+        heart_disease_probability = predict_heart_disease_probability(preprocessed_input)
+        st.write("Вероятность сердечных заболеваний:", round(heart_disease_probability[0], 4))
+        if heart_disease_probability[0] > 0.5:
+            st.warning(":broken_heart: У пациента, скорее всего, есть заболевание сердца.")
+        else:
+            st.success(":green_heart: Маловероятно, что у пациента есть сердечные заболевания.")
