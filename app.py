@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import pickle
+import joblib
 
-with open("models/ensemble_model.pkl", 'rb') as file:
-    loaded_model = pickle.load(file)
+with open("models/ensemble_model.joblib", 'rb') as file:
+    loaded_model = joblib.load(file)
 
 def preprocess_input(age, sex, chest_pain_type, resting_bp, cholesterol, fasting_bs, resting_ecg, max_hr, exercise_angina, oldpeak, st_slope):
     def transform_Sex(sex):
