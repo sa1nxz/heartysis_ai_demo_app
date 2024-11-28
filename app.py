@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 import numpy as np
 from gemini_ai import generate_ai_response
 import joblib
