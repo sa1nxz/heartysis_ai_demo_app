@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from gemini_ai import generate_ai_response
 import joblib
+import warnings
+warnings.filterwarnings("ignore")
 
 st.set_page_config(
     page_title="Heartysis AI: Прогнозируем сердечные заболевания", 
