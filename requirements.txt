@@ -1,8 +1,8 @@
-streamlit>=1.35.0
+streamlit==1.33.0
 numpy==1.26.4
 joblib==1.4.2
 scikit-learn==1.2.2
-xgboost>=2.0.3
-catboost>=1.2.3
-google-generativeai>=0.7.2
-setuptools>=69.2.0
+xgboost==2.1.1
+catboost==1.2.7
+google-generativeai==0.5.4
+setuptools-scm==8.1.0
