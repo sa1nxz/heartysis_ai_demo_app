@@ -11,11 +11,18 @@ st.set_page_config(
     layout="wide"
 )
 
+@st.cache_resource()
 def load_model():
-    with open('models/ensemble_model.joblib', 'rb') as file:
-        model = joblib.load(file)
-    print("Model loaded successfully!")
-    return model
+    try:
+        with open('models/ensemble_model.joblib', 'rb') as file:
+            model = joblib.load(file)
+        print("Model loaded successfully!")
+        print("Model type:", type(model))
+        print("Model attributes:", dir(model))
+        return model
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
+        raise
 
 loaded_model = load_model()
 
